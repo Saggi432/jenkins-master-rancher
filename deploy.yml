@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: jenkins
-          image: <dockerhub_user>/jenkins-master
+          image: saggi432/jenkins-master:0.0.1
           env:
             - name: JAVA_OPTS
               value: -Djenkins.install.runSetupWizard=false
