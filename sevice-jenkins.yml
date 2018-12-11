@@ -3,9 +3,10 @@ kind: Service
 metadata:
   name: jenkins
 spec:
-  type: LoadBalancer
   ports:
-    - port: 80
+    - port: 8089
       targetPort: 8080
   selector:
     app: jenkins
+  externalIPs:
+  - 64.137.238.198
