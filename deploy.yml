@@ -23,6 +23,8 @@ spec:
           volumeMounts:
             - name: jenkins-home
               mountPath: /var/jenkins_home
+      nodeSelector:
+        jenkins: master
       volumes:
         - name: jenkins-home
           emptyDir: {}
