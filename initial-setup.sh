@@ -11,4 +11,5 @@ systemctl status docker
  echo "set number" >> ~/.vimrc
  echo "set cursorcolumn" >> ~/.vimrc
 
+docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher:latest
 
