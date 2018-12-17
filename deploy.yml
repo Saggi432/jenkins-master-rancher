@@ -9,6 +9,9 @@ spec:
       labels:
         app: jenkins
     spec:
+      #securityContext:
+      #  fsGroup: 1000
+      #  runAsUser: 1000
       containers:
         - name: jenkins
           image: saggi432/jenkins-master:0.0.1
@@ -23,8 +26,12 @@ spec:
           volumeMounts:
             - name: jenkins-home
               mountPath: /var/jenkins_home
+          #securityContext:
+          #  allowPrivilegeEscalation: false
       nodeSelector:
         jenkins: master
       volumes:
         - name: jenkins-home
           emptyDir: {}
+          #hostPath:
+          #  path: /data

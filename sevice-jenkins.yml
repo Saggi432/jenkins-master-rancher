@@ -9,4 +9,4 @@ spec:
   selector:
     app: jenkins
   externalIPs:
-  - 64.137.238.198
+  - 104.248.68.165
