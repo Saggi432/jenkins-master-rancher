@@ -1,6 +1,9 @@
 Deploying Jenkins master into the Rancher Cluster
 
 
+we are using webtty so that we can access the servers from the browser so that we need not have the tools installed on the desktop and it runs as a service :)
+
+
 TO DO:
 -----
 
