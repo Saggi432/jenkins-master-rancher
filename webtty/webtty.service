@@ -1,0 +1,9 @@
+[Unit]
+Description = Webtty to get a web terminal setup
+After = network.target
+
+[Service]
+ExecStart = /opt/jenkins-master-rancher/webtty/webtty-start.sh
+
+[Install]
+WantedBy = multi-user.target
