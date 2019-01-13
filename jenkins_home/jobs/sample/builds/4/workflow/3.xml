@@ -1,0 +1,35 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<Tag plugin="workflow-support@2.24">
+  <node class="cps.n.StepStartNode" plugin="workflow-cps@2.61">
+    <parentIds>
+      <string>2</string>
+    </parentIds>
+    <id>3</id>
+    <descriptorId>org.jenkinsci.plugins.workflow.support.steps.ExecutorStep</descriptorId>
+  </node>
+  <actions>
+    <cps.a.ArgumentsActionImpl plugin="workflow-cps@2.61">
+      <arguments>
+        <entry>
+          <string>label</string>
+          <string>jnlp</string>
+        </entry>
+      </arguments>
+      <isUnmodifiedBySanitization>true</isUnmodifiedBySanitization>
+    </cps.a.ArgumentsActionImpl>
+    <wf.a.TimingAction plugin="workflow-api@2.33">
+      <startTime>1545761662354</startTime>
+    </wf.a.TimingAction>
+    <s.a.LogStorageAction/>
+    <org.jenkinsci.plugins.workflow.support.steps.ExecutorStepExecution_-QueueItemActionImpl plugin="workflow-durable-task-step@2.27">
+      <id>14</id>
+    </org.jenkinsci.plugins.workflow.support.steps.ExecutorStepExecution_-QueueItemActionImpl>
+    <s.a.WorkspaceActionImpl>
+      <node>jnlp-ll6f2</node>
+      <path>/home/jenkins/workspace/sample</path>
+      <labels class="sorted-set">
+        <hudson.model.labels.LabelAtom>jnlp</hudson.model.labels.LabelAtom>
+      </labels>
+    </s.a.WorkspaceActionImpl>
+  </actions>
+</Tag>

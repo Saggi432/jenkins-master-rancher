@@ -1,0 +1,75 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-build plugin="workflow-job@2.31">
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.model.Cause_-UserIdCause/>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+    <org.jenkinsci.plugins.workflow.libs.LibrariesAction plugin="workflow-cps-global-lib@2.12">
+      <libraries/>
+    </org.jenkinsci.plugins.workflow.libs.LibrariesAction>
+  </actions>
+  <queueId>15</queueId>
+  <timestamp>1545761707166</timestamp>
+  <startTime>1545761707168</startTime>
+  <result>SUCCESS</result>
+  <duration>49607</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <execution class="org.jenkinsci.plugins.workflow.cps.CpsFlowExecution">
+    <result>SUCCESS</result>
+    <script>node(&apos;jnlp&apos;){
+    stage(&apos;jnlp&apos;){
+        sh &quot;env&quot;
+        sh &quot;sleep 5&quot;
+    }
+        stage(&apos;jnlp&apos;){
+        sh &quot;env&quot;
+        sh &quot;sleep 5&quot;
+    }
+        stage(&apos;jnlp&apos;){
+        sh &quot;env&quot;
+        sh &quot;sleep 5&quot;
+    }
+        stage(&apos;jnlp&apos;){
+        sh &quot;env&quot;
+        sh &quot;sleep 5&quot;
+    }
+}</script>
+    <loadedScripts class="map"/>
+    <durabilityHint>MAX_SURVIVABILITY</durabilityHint>
+    <timings class="map">
+      <entry>
+        <string>flowNode</string>
+        <long>267976729</long>
+      </entry>
+      <entry>
+        <string>classLoad</string>
+        <long>13615259</long>
+      </entry>
+      <entry>
+        <string>run</string>
+        <long>3090586359</long>
+      </entry>
+      <entry>
+        <string>parse</string>
+        <long>56306794</long>
+      </entry>
+      <entry>
+        <string>saveProgram</string>
+        <long>69127311</long>
+      </entry>
+    </timings>
+    <sandbox>true</sandbox>
+    <iota>31</iota>
+    <head>1:31</head>
+    <done>true</done>
+    <resumeBlocked>false</resumeBlocked>
+  </execution>
+  <completed>true</completed>
+  <checkouts class="hudson.util.PersistedList"/>
+</flow-build>
